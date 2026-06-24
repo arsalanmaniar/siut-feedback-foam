@@ -1,0 +1,656 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "section": "admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 4 }
+    },
+    {
+      "id": 2,
+      "section": "admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 4 }
+    },
+    {
+      "id": 3,
+      "section": "admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 4,
+      "section": "admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 5,
+      "section": "admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 6,
+      "section": "care_after_admission",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 13 }
+    },
+    {
+      "id": 7,
+      "section": "child_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "child_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "child_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "child_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "child_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "child_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 13,
+      "section": "parent_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 14,
+      "section": "parent_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 15,
+      "section": "parent_nurses",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "parent_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 17,
+      "section": "parent_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 18,
+      "section": "parent_doctors",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 19,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 20,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 21,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 22,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 23,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 25 }
+    },
+    {
+      "id": 24,
+      "section": "providers",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 25,
+      "section": "child_care",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 26,
+      "section": "child_care",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 27,
+      "section": "child_care",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 28,
+      "section": "child_care",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 30 }
+    },
+    {
+      "id": 29,
+      "section": "child_care",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 30,
+      "section": "environment",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 31,
+      "section": "environment",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 32,
+      "section": "environment",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 33,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 34,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 35,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 41 }
+    },
+    {
+      "id": 36,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 37,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 38,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 39,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 40,
+      "section": "discharge",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 41,
+      "section": "teen",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": 45 }
+    },
+    {
+      "id": 42,
+      "section": "teen",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 43,
+      "section": "teen",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 44,
+      "section": "teen",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 45,
+      "section": "overall_rating",
+      "type": "radio",
+      "options": [
+        { "value": 0, "labelKey": "rating_0" },
+        { "value": 1, "labelKey": "rating_1" },
+        { "value": 2, "labelKey": "rating_2" },
+        { "value": 3, "labelKey": "rating_3" },
+        { "value": 4, "labelKey": "rating_4" },
+        { "value": 5, "labelKey": "rating_5" },
+        { "value": 6, "labelKey": "rating_6" },
+        { "value": 7, "labelKey": "rating_7" },
+        { "value": 8, "labelKey": "rating_8" },
+        { "value": 9, "labelKey": "rating_9" },
+        { "value": 10, "labelKey": "rating_10" }
+      ]
+    },
+    {
+      "id": 46,
+      "section": "overall_rating",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "definitely_yes" },
+        { "value": 2, "labelKey": "probably_yes" },
+        { "value": 3, "labelKey": "probably_no" },
+        { "value": 4, "labelKey": "definitely_no" }
+      ]
+    },
+    {
+      "id": 47,
+      "section": "overall_rating",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "never" },
+        { "value": 2, "labelKey": "sometimes" },
+        { "value": 3, "labelKey": "usually" },
+        { "value": 4, "labelKey": "always" },
+        { "value": 5, "labelKey": "not_applicable" }
+      ]
+    },
+    {
+      "id": 48,
+      "section": "overall_rating",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 49,
+      "section": "overall_rating",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes_definitely" },
+        { "value": 2, "labelKey": "yes_somewhat" },
+        { "value": 3, "labelKey": "no" }
+      ]
+    },
+    {
+      "id": 50,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "mother" },
+        { "value": 2, "labelKey": "father" },
+        { "value": 3, "labelKey": "grandmother" },
+        { "value": 4, "labelKey": "grandfather" },
+        { "value": 5, "labelKey": "other_relative" },
+        { "value": 6, "labelKey": "someone_else" }
+      ],
+      "hasOtherText": true,
+      "otherValue": 6,
+      "otherFieldKey": "q50_text"
+    },
+    {
+      "id": 51,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 0, "labelKey": "under_18" },
+        { "value": 1, "labelKey": "age_18_24" },
+        { "value": 2, "labelKey": "age_25_34" },
+        { "value": 3, "labelKey": "age_35_44" },
+        { "value": 4, "labelKey": "age_45_54" },
+        { "value": 5, "labelKey": "age_55_64" },
+        { "value": 6, "labelKey": "age_65_74" },
+        { "value": 7, "labelKey": "age_75_plus" }
+      ]
+    },
+    {
+      "id": 52,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "edu_8th_or_less" },
+        { "value": 2, "labelKey": "edu_some_hs" },
+        { "value": 3, "labelKey": "edu_hs_grad" },
+        { "value": 4, "labelKey": "edu_some_college" },
+        { "value": 5, "labelKey": "edu_4yr_grad" },
+        { "value": 6, "labelKey": "edu_postgrad" }
+      ]
+    },
+    {
+      "id": 53,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "lang_english" },
+        { "value": 2, "labelKey": "lang_urdu" },
+        { "value": 3, "labelKey": "lang_other" }
+      ],
+      "hasOtherText": true,
+      "otherValue": 3,
+      "otherFieldKey": "q53_text"
+    },
+    {
+      "id": 54,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "none_of_the_time" },
+        { "value": 2, "labelKey": "a_little_of_the_time" },
+        { "value": 3, "labelKey": "some_of_the_time" },
+        { "value": 4, "labelKey": "most_of_the_time" },
+        { "value": 5, "labelKey": "all_of_the_time" }
+      ]
+    },
+    {
+      "id": 55,
+      "section": "about_you",
+      "type": "textarea",
+      "fieldKey": "q55_text"
+    },
+    {
+      "id": 56,
+      "section": "about_you",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ],
+      "skipRule": { "ifValue": 2, "goTo": "end" }
+    },
+    {
+      "id": 57,
+      "section": "about_you",
+      "type": "checkbox",
+      "options": [
+        { "value": 1, "labelKey": "help_read" },
+        { "value": 2, "labelKey": "help_wrote" },
+        { "value": 3, "labelKey": "help_answered" },
+        { "value": 4, "labelKey": "help_translated" },
+        { "value": 5, "labelKey": "help_other" }
+      ],
+      "hasOtherText": true,
+      "otherValue": 5,
+      "otherFieldKey": "q57_text"
+    }
+  ],
+  "skipRules": [
+    { "from": 1, "ifValue": 2, "goTo": 4 },
+    { "from": 2, "ifValue": 2, "goTo": 4 },
+    { "from": 6, "ifValue": 2, "goTo": 13 },
+    { "from": 23, "ifValue": 2, "goTo": 25 },
+    { "from": 28, "ifValue": 2, "goTo": 30 },
+    { "from": 35, "ifValue": 2, "goTo": 41 },
+    { "from": 41, "ifValue": 2, "goTo": 45 },
+    { "from": 56, "ifValue": 2, "goTo": "end" }
+  ]
+}
