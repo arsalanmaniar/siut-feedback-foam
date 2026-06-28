@@ -30,7 +30,6 @@ const SECTION_LABELS: Record<string, string> = {
   child_care:           "Your Child's Care",
   environment:          'Hospital Environment',
   discharge:            'When Your Child Left the Hospital',
-  screening:            'Before We Continue',
   teen:                 "Your Teen's Care",
   overall_rating:       'Overall Rating',
   about_child:          'About Your Child',

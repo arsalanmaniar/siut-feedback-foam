@@ -30,7 +30,7 @@ function flattenAnswers(answers: Answers) {
         .join(' | ')
     } else if (typeof raw === 'number') {
       const opt = (q as { options?: Array<{ value: number; labelKey: string }> })?.options?.find((o) => o.value === raw)
-      result[`q${q.id}`] = opt ? getLabelEn(opt.labelKey) : raw === 5 ? getLabelEn('not_applicable') : String(raw)
+      result[`q${q.id}`] = opt ? getLabelEn(opt.labelKey) : String(raw)
     } else {
       result[`q${q.id}`] = String(raw)
     }

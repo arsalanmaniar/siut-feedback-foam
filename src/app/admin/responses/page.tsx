@@ -38,15 +38,8 @@ export default async function ResponsesPage({
       status: true,
       submittedAt: true,
       syncedAt: true,
-      answers: true,
     },
   })
 
-  // Derive the "deceased" flag (Q58 = Yes) server-side; don't ship full answers to the client.
-  const rows = responses.map(({ answers, ...r }) => ({
-    ...r,
-    deceased: (answers as Record<string, unknown>)?.q58 === 1,
-  }))
-
-  return <ResponsesClient responses={rows} initialFilters={{ q, lang, from, to }} />
+  return <ResponsesClient responses={responses} initialFilters={{ q, lang, from, to }} />
 }

@@ -44,10 +44,7 @@ function pctAlwaysQuestions(responses: Array<{ answers: unknown }>, qKeys: strin
 
 function pctTopAnswer(responses: Array<{ answers: unknown }>, qKeys: string[], topVal: number): number {
   const perQ = qKeys.map((key) => {
-    const valid = responses.filter((r) => {
-      const v = getNum(r.answers as Answers, key)
-      return v !== null && v !== 5
-    })
+    const valid = responses.filter((r) => getNum(r.answers as Answers, key) !== null)
     if (valid.length === 0) return 0
     const top = valid.filter((r) => getNum(r.answers as Answers, key) === topVal)
     return (top.length / valid.length) * 100

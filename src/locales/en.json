@@ -30,7 +30,6 @@
   "section_child_care": "Your Child's Care in This Hospital",
   "section_environment": "The Hospital Environment",
   "section_discharge": "When Your Child Left This Hospital",
-  "section_screening": "Before We Continue",
   "section_teen": "Your Teen's Care in This Hospital",
   "section_about_you": "About You",
 
@@ -52,8 +51,8 @@
   "q16": "How often did your child's doctors listen carefully to you?",
   "q17": "How often did your child's doctors explain things to you in a way that was easy to understand?",
   "q18": "How often did your child's doctors treat you with courtesy and respect?",
-  "q19": "How often were you given as much privacy as you wanted when discussing your child's care with providers?",
-  "q20": "Did providers ask you about things the family knows best about the child (how child usually acts, what makes child comfortable, how to calm fears)?",
+  "q19": "A provider in the hospital can be a doctor, nurse, practitioner, or physician assistant. During this hospital stay, How often were you given as much privacy as you wanted when discussing your child's care with providers?",
+  "q20": "Things that a family might know best about a child include how the child usually acts, what makes the child comfortable, and how to calm the child's fears. During this hospital stay, did providers ask you about these types of things?",
   "q21": "How often did providers talk with and act toward your child in a way that was right for your child's age?",
   "q22": "How often did providers keep you informed about what was being done for your child?",
   "q23": "Did your child have any tests (blood tests, x-rays, etc.) during this hospital stay?",
@@ -78,7 +77,6 @@
   "q42": "During this hospital stay, how often did providers involve your child in discussions about his or her health care?",
   "q43": "Before your child left the hospital, did a provider ask your child if he or she had any concerns about whether he or she was ready to leave?",
   "q44": "Before your child left the hospital, did a provider talk with your child about how to take care of his or her health after leaving the hospital?",
-  "q58": "We are so sorry for what your family may have been through. So that we only ask questions that apply to you, may we gently ask — did your child pass away during this hospital stay?",
   "section_overall_rating": "Overall Rating of This Hospital",
 
   "q45": "Using any number from 0 to 10, where 0 is the worst hospital possible and 10 is the best hospital possible, what number would you use to rate this hospital during your child's stay?",

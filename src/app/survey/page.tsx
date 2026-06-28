@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useI18n, Locale } from '@/i18n/context'
 import QuestionRenderer, { QuestionConfig } from '@/components/survey/QuestionRenderer'
 import questionsData from '@/data/survey-questions.json'
-import { getVisibleQuestionIds, withDeceasedSideEffects } from '@/lib/skip-logic'
+import { getVisibleQuestionIds } from '@/lib/skip-logic'
 import {
   saveResponseLocally,
   getDeviceId,
@@ -182,9 +182,7 @@ export default function SurveyPage() {
   const progress = Math.round(((currentQIndex + 1) / visibleQuestions.length) * 100)
 
   const handleAnswer = useCallback((key: string, value: unknown) => {
-    // withDeceasedSideEffects keeps the discharge questions in sync with the
-    // "did your child pass away" screening answer (auto-marks them N/A).
-    setAnswers((prev) => withDeceasedSideEffects({ ...prev, [key]: value }))
+    setAnswers((prev) => ({ ...prev, [key]: value }))
   }, [])
 
   function goNext() {

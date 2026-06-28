@@ -27,10 +27,7 @@ function renderAnswer(qId: number, answers: Answers): string {
   if (typeof raw === 'number') {
     const q = questionsData.questions.find((q) => q.id === qId)
     const opt = (q as { options?: Array<{ value: number; labelKey: string }> })?.options?.find((o) => o.value === raw)
-    if (opt) return getLabel(opt.labelKey)
-    // Discharge questions (no listed NA option) are auto-marked NA (5) for deceased patients
-    if (raw === 5) return getLabel('not_applicable')
-    return String(raw)
+    return opt ? getLabel(opt.labelKey) : String(raw)
   }
   return String(raw)
 }

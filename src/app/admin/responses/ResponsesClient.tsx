@@ -31,7 +31,6 @@ interface ResponseRow {
   status: string
   submittedAt: Date
   syncedAt: Date | null
-  deceased: boolean
 }
 
 interface Filters {
@@ -192,18 +191,11 @@ export default function ResponsesClient({
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap items-center gap-1">
-                      {r.status === 'incomplete' ? (
-                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Incomplete</span>
-                      ) : (
-                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Complete</span>
-                      )}
-                      {r.deceased && (
-                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-700" title="Family reported the child passed away during this stay">
-                          Deceased
-                        </span>
-                      )}
-                    </div>
+                    {r.status === 'incomplete' ? (
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Incomplete</span>
+                    ) : (
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Complete</span>
+                    )}
                   </td>
                   <td className="px-4 py-3 text-gray-500">{new Date(r.submittedAt).toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-gray-500">{r.syncedAt ? new Date(r.syncedAt).toLocaleDateString() : '–'}</td>
