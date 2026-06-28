@@ -14,7 +14,7 @@ const TEXT_TO_NUM: Record<string, number> = {
   // Yes/Definitely scale (q3-q5, q20, q27, q29, q32-q40, q43-q44)
   'Yes, Definitely': 1, 'Yes, Somewhat': 2, 'No': 3,
   // Q46 Recommend
-  'Definitely Yes': 1, 'Probably Yes': 2, 'Probably No': 3, 'Definitely No': 4,
+  'Definitely No': 1, 'Probably No': 2, 'Probably Yes': 3, 'Definitely Yes': 4,
 }
 
 function getNum(answers: Answers, key: string): number | null {
@@ -73,14 +73,14 @@ export default async function AnalyticsPage() {
         ) / 10
       : 0
 
-  // % Would recommend (Q46 = 1 "definitely yes" or 2 "probably yes")
+  // % Would recommend (Q46 = 3 "probably yes" or 4 "definitely yes")
   const recAnswered = responses.filter((r) => getNum(r.answers as Answers, 'q46') !== null)
   const pctRecommend =
     recAnswered.length > 0
       ? Math.round(
           (recAnswered.filter((r) => {
             const v = getNum(r.answers as Answers, 'q46')
-            return v === 1 || v === 2
+            return v === 3 || v === 4
           }).length /
             recAnswered.length) *
             100

@@ -8,7 +8,7 @@ import FreeText from './FreeText'
 export interface QuestionConfig {
   id: number
   section: string
-  type: 'radio' | 'checkbox' | 'textarea' | 'placeholder'
+  type: 'radio' | 'checkbox' | 'textarea' | 'number' | 'placeholder'
   options?: Array<{ value: number; labelKey: string }>
   skipRule?: { ifValue: number; goTo: number | 'end' }
   hasOtherText?: boolean
@@ -89,6 +89,15 @@ export default function QuestionRenderer({ question, answers, onChange }: Questi
           onChange={(v) => onChange(question.fieldKey ?? qKey, v)}
           placeholderKey={`${question.fieldKey ?? qKey}_placeholder` as never}
           multiline
+        />
+      )}
+
+      {question.type === 'number' && (
+        <FreeText
+          value={(answers[question.fieldKey ?? qKey] as string) ?? ''}
+          onChange={(v) => onChange(question.fieldKey ?? qKey, v)}
+          placeholderKey={`${question.fieldKey ?? qKey}_placeholder` as never}
+          numeric
         />
       )}
     </div>

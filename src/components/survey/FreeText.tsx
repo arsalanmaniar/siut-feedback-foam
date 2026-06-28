@@ -8,13 +8,14 @@ interface FreeTextProps {
   onChange: (v: string) => void
   placeholderKey?: string
   multiline?: boolean
+  numeric?: boolean
 }
 
 const BASE = 'w-full px-4 py-3.5 border-2 rounded-xl text-base bg-white transition-shadow duration-150'
 const BLUR_STYLE  = { outline: 'none', borderColor: '#e5e7eb' }
 const FOCUS_STYLE = { outline: 'none', borderColor: '#ef4444', boxShadow: '0 0 0 3px rgba(239,68,68,0.20)' }
 
-export default function FreeText({ value, onChange, placeholderKey, multiline = false }: FreeTextProps) {
+export default function FreeText({ value, onChange, placeholderKey, multiline = false, numeric = false }: FreeTextProps) {
   const { t, dir } = useI18n()
   const [focused, setFocused] = useState(false)
   const placeholder = placeholderKey ? t(placeholderKey as never) : ''
@@ -42,7 +43,9 @@ export default function FreeText({ value, onChange, placeholderKey, multiline = 
   return (
     <input
       {...shared}
-      type="text"
+      type={numeric ? 'number' : 'text'}
+      inputMode={numeric ? 'numeric' : undefined}
+      min={numeric ? 0 : undefined}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className={BASE}

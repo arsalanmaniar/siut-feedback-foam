@@ -32,6 +32,7 @@ const SECTION_LABELS: Record<string, string> = {
   discharge:            'When Your Child Left the Hospital',
   teen:                 "Your Teen's Care",
   overall_rating:       'Overall Rating',
+  about_child:          'About Your Child',
   about_you:            'About You',
 }
 
@@ -64,6 +65,23 @@ function QuestionInput({ q, value, onChange }: { q: QuestionConfig; value: unkno
             onChange(q.fieldKey ?? key, e.target.value)
           }}
           className={INP + ' resize-y'}
+          placeholder={labels[q.fieldKey ? `${q.fieldKey}_placeholder` : `q${q.id}_placeholder`] ?? ''}
+        />
+      </div>
+    )
+  }
+
+  if (q.type === 'number') {
+    return (
+      <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+        <p className="text-xs text-gray-400 mb-0.5">Q{q.id}</p>
+        <label className="block text-sm font-medium text-gray-700 mb-1.5">{qLabel}</label>
+        <input
+          type="number"
+          min={0}
+          value={typeof value === 'number' || typeof value === 'string' ? String(value) : ''}
+          onChange={e => onChange(q.fieldKey ?? key, e.target.value)}
+          className={INP}
           placeholder={labels[q.fieldKey ? `${q.fieldKey}_placeholder` : `q${q.id}_placeholder`] ?? ''}
         />
       </div>

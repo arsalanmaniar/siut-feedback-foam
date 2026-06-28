@@ -504,42 +504,37 @@
       "section": "overall_rating",
       "type": "radio",
       "options": [
-        { "value": 1, "labelKey": "definitely_yes" },
-        { "value": 2, "labelKey": "probably_yes" },
-        { "value": 3, "labelKey": "probably_no" },
-        { "value": 4, "labelKey": "definitely_no" }
+        { "value": 1, "labelKey": "definitely_no" },
+        { "value": 2, "labelKey": "probably_no" },
+        { "value": 3, "labelKey": "probably_yes" },
+        { "value": 4, "labelKey": "definitely_yes" }
       ]
     },
     {
       "id": 47,
-      "section": "overall_rating",
+      "section": "about_child",
       "type": "radio",
       "options": [
-        { "value": 1, "labelKey": "never" },
-        { "value": 2, "labelKey": "sometimes" },
-        { "value": 3, "labelKey": "usually" },
-        { "value": 4, "labelKey": "always" },
-        { "value": 5, "labelKey": "not_applicable" }
+        { "value": 1, "labelKey": "excellent" },
+        { "value": 2, "labelKey": "very_good" },
+        { "value": 3, "labelKey": "good" },
+        { "value": 4, "labelKey": "fair" },
+        { "value": 5, "labelKey": "poor" }
       ]
     },
     {
       "id": 48,
-      "section": "overall_rating",
-      "type": "radio",
-      "options": [
-        { "value": 1, "labelKey": "yes_definitely" },
-        { "value": 2, "labelKey": "yes_somewhat" },
-        { "value": 3, "labelKey": "no" }
-      ]
+      "section": "about_child",
+      "type": "number",
+      "fieldKey": "q48"
     },
     {
       "id": 49,
-      "section": "overall_rating",
+      "section": "about_child",
       "type": "radio",
       "options": [
-        { "value": 1, "labelKey": "yes_definitely" },
-        { "value": 2, "labelKey": "yes_somewhat" },
-        { "value": 3, "labelKey": "no" }
+        { "value": 1, "labelKey": "male" },
+        { "value": 2, "labelKey": "female" }
       ]
     },
     {
