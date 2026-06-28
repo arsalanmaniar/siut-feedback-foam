@@ -1,4 +1,4 @@
-const CACHE_NAME = 'siut-survey-v2'
+const CACHE_NAME = 'siut-survey-v3'
 const OFFLINE_ASSETS = ['/', '/survey']
 
 self.addEventListener('install', (event) => {
