@@ -8,6 +8,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { id, patientName, fatherName, mrnNo, dateOfProcedure, contactNumber, language, answers, submittedAt, deviceId } = body
 
+    const staffAssisted = Array.isArray(answers?.q57) && answers.q57.length > 0
+
     await prisma.surveyResponse.upsert({
       where: { id },
       create: {
@@ -19,13 +21,26 @@ export async function POST(request: NextRequest) {
         contactNumber,
         language,
         answers,
+        status: 'complete',
         submittedAt: new Date(submittedAt),
         syncedAt: new Date(),
         deviceId,
-        staffAssisted: Array.isArray(answers?.q57) && answers.q57.length > 0,
+        staffAssisted,
       },
+      // Finalize: an in-progress draft row (same id) is promoted to a complete
+      // submission, with the latest patient info and answers written through.
       update: {
+        patientName,
+        fatherName,
+        mrnNo,
+        dateOfProcedure: new Date(dateOfProcedure),
+        contactNumber,
+        language,
+        answers,
+        status: 'complete',
+        submittedAt: new Date(submittedAt),
         syncedAt: new Date(),
+        staffAssisted,
       },
     })
 

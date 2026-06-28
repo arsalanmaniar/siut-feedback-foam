@@ -1,12 +1,21 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { useI18n } from '@/i18n/context'
+import { useI18n, Locale } from '@/i18n/context'
 import QuestionRenderer, { QuestionConfig } from '@/components/survey/QuestionRenderer'
 import questionsData from '@/data/survey-questions.json'
-import { getVisibleQuestionIds } from '@/lib/skip-logic'
-import { saveResponseLocally, getDeviceId, getPendingCount } from '@/lib/offline-db'
+import { getVisibleQuestionIds, withDeceasedSideEffects } from '@/lib/skip-logic'
+import {
+  saveResponseLocally,
+  getDeviceId,
+  getPendingCount,
+  saveDraft,
+  getActiveDraft,
+  clearDrafts,
+  todayKey,
+  DraftSession,
+} from '@/lib/offline-db'
 import { registerSyncListeners } from '@/lib/sync'
 
 type Stage = 'language' | 'cover' | 'survey' | 'done'
@@ -75,11 +84,97 @@ export default function SurveyPage() {
   const [slideDir, setSlideDir] = useState<'right' | 'left'>('right')
   const [animKey, setAnimKey] = useState(0)
 
+  // ── Auto-save / resume state ──
+  const [sessionId, setSessionId] = useState<string | null>(null)
+  const [hydrated, setHydrated] = useState(false)
+  const startedAtRef = useRef<string>('')
+  // Refs hold the latest values for the periodic DB-draft sync (avoids stale closures)
+  const answersRef = useRef(answers); answersRef.current = answers
+  const coverRef = useRef(cover); coverRef.current = cover
+  const localeRef = useRef(locale); localeRef.current = locale
+
   useEffect(() => {
     const cleanup = registerSyncListeners()
     getPendingCount().then(setPendingCount)
     return cleanup
   }, [])
+
+  // Resume an interrupted, same-day session if one is saved locally.
+  useEffect(() => {
+    let active = true
+    getActiveDraft().then((draft) => {
+      if (!active) return
+      if (draft) {
+        setLocale(draft.language as Locale)
+        setCover({
+          patientName: draft.patientName,
+          fatherName: draft.fatherName,
+          mrnNo: draft.mrnNo,
+          dateOfProcedure: draft.dateOfProcedure,
+          contactNumber: draft.contactNumber,
+        })
+        setAnswers(draft.answers)
+        setCurrentQIndex(draft.currentQIndex)
+        setSessionId(draft.id)
+        startedAtRef.current = draft.startedAt
+        setStage(draft.stage)
+      }
+      setHydrated(true)
+    })
+    return () => { active = false }
+  }, [setLocale])
+
+  // Silently persist progress to IndexedDB after every change.
+  useEffect(() => {
+    if (!hydrated || !sessionId) return
+    if (stage !== 'cover' && stage !== 'survey') return
+    const draft: DraftSession = {
+      id: sessionId,
+      patientName: cover.patientName,
+      fatherName: cover.fatherName,
+      mrnNo: cover.mrnNo,
+      dateOfProcedure: cover.dateOfProcedure,
+      contactNumber: cover.contactNumber,
+      language: locale,
+      answers: answers as Record<string, unknown>,
+      stage,
+      currentQIndex,
+      startedAt: startedAtRef.current || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      dayKey: todayKey(),
+      deviceId: getDeviceId(),
+    }
+    void saveDraft(draft)
+  }, [hydrated, sessionId, stage, cover, answers, currentQIndex, locale])
+
+  // Periodically back up the in-progress draft to the database (every 30s),
+  // so a partial response survives even if the tablet is lost/reset.
+  useEffect(() => {
+    if (!sessionId || stage !== 'survey') return
+    const interval = setInterval(() => {
+      if (!navigator.onLine) return
+      fetch('/api/survey/draft', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: sessionId,
+          ...coverRef.current,
+          language: localeRef.current,
+          answers: answersRef.current,
+          startedAt: startedAtRef.current,
+          deviceId: getDeviceId(),
+        }),
+      }).catch(() => { /* offline — local draft still holds the data */ })
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [sessionId, stage])
+
+  function beginSession(l: Locale) {
+    setLocale(l)
+    setSessionId(crypto.randomUUID())
+    startedAtRef.current = new Date().toISOString()
+    setStage('cover')
+  }
 
   const visibleIds = getVisibleQuestionIds(allQuestionIds, answers as Record<string, number | number[]>)
   const visibleQuestions = visibleIds.map((id) => questions.find((q) => q.id === id)!)
@@ -87,7 +182,9 @@ export default function SurveyPage() {
   const progress = Math.round(((currentQIndex + 1) / visibleQuestions.length) * 100)
 
   const handleAnswer = useCallback((key: string, value: unknown) => {
-    setAnswers((prev) => ({ ...prev, [key]: value }))
+    // withDeceasedSideEffects keeps the discharge questions in sync with the
+    // "did your child pass away" screening answer (auto-marks them N/A).
+    setAnswers((prev) => withDeceasedSideEffects({ ...prev, [key]: value }))
   }, [])
 
   function goNext() {
@@ -116,7 +213,7 @@ export default function SurveyPage() {
 
   async function handleSubmit() {
     setSubmitting(true)
-    const id = crypto.randomUUID()
+    const id = sessionId ?? crypto.randomUUID()
     const response = {
       id,
       ...cover,
@@ -139,6 +236,11 @@ export default function SurveyPage() {
     } catch {
       // offline — syncs later
     }
+    // Survey fully submitted — clear the in-progress draft so the next patient
+    // starts fresh (the DB draft row, same id, is now finalized as complete).
+    await clearDrafts()
+    setSessionId(null)
+    startedAtRef.current = ''
     setSubmitting(false)
     setStage('done')
   }
@@ -160,7 +262,7 @@ export default function SurveyPage() {
 
         <div className="flex flex-col gap-3 w-full max-w-xs">
           <button
-            onClick={() => { setLocale('en'); setStage('cover') }}
+            onClick={() => beginSession('en')}
             className="group relative bg-white text-red-700 font-bold py-5 rounded-2xl text-xl
                        shadow-lg hover:shadow-xl active:scale-[0.98]
                        transition-all duration-150"
@@ -170,7 +272,7 @@ export default function SurveyPage() {
           </button>
 
           <button
-            onClick={() => { setLocale('roman-ur'); setStage('cover') }}
+            onClick={() => beginSession('roman-ur')}
             className="group relative bg-white/15 backdrop-blur text-white font-bold py-5 rounded-2xl text-xl
                        border border-white/30 hover:bg-white/25 active:scale-[0.98]
                        transition-all duration-150"
@@ -180,7 +282,7 @@ export default function SurveyPage() {
           </button>
 
           <button
-            onClick={() => { setLocale('ur'); setStage('cover') }}
+            onClick={() => beginSession('ur')}
             dir="rtl"
             className="group relative bg-white/10 backdrop-blur text-white font-bold py-5 rounded-2xl text-xl
                        border border-white/20 hover:bg-white/20 active:scale-[0.98]
@@ -406,6 +508,9 @@ export default function SurveyPage() {
         )}
         <button
           onClick={() => {
+            void clearDrafts()
+            setSessionId(null)
+            startedAtRef.current = ''
             setStage('language')
             setAnswers({})
             setCover({ patientName: '', fatherName: '', mrnNo: '', dateOfProcedure: '', contactNumber: '' })

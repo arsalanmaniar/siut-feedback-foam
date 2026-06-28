@@ -31,9 +31,12 @@ function getAnswerPct(responses: Array<{ answers: unknown }>, qKey: string, targ
 }
 
 export default async function DashboardPage() {
+  // Exclude incomplete (auto-saved, not-yet-submitted) drafts from all dashboard stats.
+  const completeOnly = { status: { not: 'incomplete' } }
   const [total, responses] = await Promise.all([
-    prisma.surveyResponse.count(),
+    prisma.surveyResponse.count({ where: completeOnly }),
     prisma.surveyResponse.findMany({
+      where: completeOnly,
       orderBy: { dateOfProcedure: 'desc' },
       take: 500,
       select: { dateOfProcedure: true, language: true, answers: true },

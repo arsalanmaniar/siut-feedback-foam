@@ -358,6 +358,15 @@
       ]
     },
     {
+      "id": 58,
+      "section": "screening",
+      "type": "radio",
+      "options": [
+        { "value": 1, "labelKey": "yes" },
+        { "value": 2, "labelKey": "no" }
+      ]
+    },
+    {
       "id": 33,
       "section": "discharge",
       "type": "radio",

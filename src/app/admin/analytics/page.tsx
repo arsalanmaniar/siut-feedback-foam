@@ -44,7 +44,10 @@ function pctAlwaysQuestions(responses: Array<{ answers: unknown }>, qKeys: strin
 
 function pctTopAnswer(responses: Array<{ answers: unknown }>, qKeys: string[], topVal: number): number {
   const perQ = qKeys.map((key) => {
-    const valid = responses.filter((r) => getNum(r.answers as Answers, key) !== null)
+    const valid = responses.filter((r) => {
+      const v = getNum(r.answers as Answers, key)
+      return v !== null && v !== 5
+    })
     if (valid.length === 0) return 0
     const top = valid.filter((r) => getNum(r.answers as Answers, key) === topVal)
     return (top.length / valid.length) * 100
@@ -55,6 +58,9 @@ function pctTopAnswer(responses: Array<{ answers: unknown }>, qKeys: string[], t
 
 export default async function AnalyticsPage() {
   const responses = await prisma.surveyResponse.findMany({
+    // Incomplete (auto-saved, not-yet-submitted) drafts are excluded so partial
+    // data doesn't skew satisfaction %, average ratings, etc.
+    where: { status: { not: 'incomplete' } },
     orderBy: { submittedAt: 'desc' },
     take: 1000,
     select: { answers: true, language: true },

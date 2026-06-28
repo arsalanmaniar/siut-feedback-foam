@@ -30,7 +30,7 @@ function flattenAnswers(answers: Answers) {
         .join(' | ')
     } else if (typeof raw === 'number') {
       const opt = (q as { options?: Array<{ value: number; labelKey: string }> })?.options?.find((o) => o.value === raw)
-      result[`q${q.id}`] = opt ? getLabelEn(opt.labelKey) : String(raw)
+      result[`q${q.id}`] = opt ? getLabelEn(opt.labelKey) : raw === 5 ? getLabelEn('not_applicable') : String(raw)
     } else {
       result[`q${q.id}`] = String(raw)
     }
@@ -76,6 +76,7 @@ export async function GET(request: NextRequest) {
     dateOfProcedure: r.dateOfProcedure.toISOString().slice(0, 10),
     contactNumber: r.contactNumber,
     language: r.language,
+    status: r.status,
     submittedAt: r.submittedAt.toISOString(),
     syncedAt: r.syncedAt?.toISOString() ?? '',
     deviceId: r.deviceId ?? '',

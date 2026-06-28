@@ -1,4 +1,7 @@
 import Dexie, { Table } from 'dexie'
+import { todayKey, pickActiveDraft } from './draft-utils'
+
+export { todayKey }
 
 export interface PendingResponse {
   id: string
@@ -14,13 +17,37 @@ export interface PendingResponse {
   synced: boolean
 }
 
+// In-progress (not-yet-submitted) survey session, auto-saved after every answer
+// so an interrupted survey can be resumed instead of starting over.
+export interface DraftSession {
+  id: string            // becomes the final response id once submitted
+  patientName: string
+  fatherName: string
+  mrnNo: string
+  dateOfProcedure: string
+  contactNumber: string
+  language: string
+  answers: Record<string, unknown>
+  stage: 'cover' | 'survey'
+  currentQIndex: number
+  startedAt: string
+  updatedAt: string
+  dayKey: string        // YYYY-MM-DD — only same-day drafts are offered for resume
+  deviceId: string
+}
+
 class SurveyDB extends Dexie {
   responses!: Table<PendingResponse, string>
+  drafts!: Table<DraftSession, string>
 
   constructor() {
     super('siut-survey-db')
     this.version(1).stores({
       responses: 'id, synced, submittedAt',
+    })
+    this.version(2).stores({
+      responses: 'id, synced, submittedAt',
+      drafts: 'id, dayKey, updatedAt',
     })
   }
 }
@@ -46,6 +73,23 @@ export async function markResponseSynced(id: string): Promise<void> {
 
 export async function getPendingCount(): Promise<number> {
   return getDB().responses.where('synced').equals(0).count()
+}
+
+export async function saveDraft(draft: DraftSession): Promise<void> {
+  await getDB().drafts.put(draft)
+}
+
+// Returns a resumable draft for the current day, if any. Drafts from previous
+// days are considered stale and purged so a new patient always starts fresh.
+export async function getActiveDraft(): Promise<DraftSession | null> {
+  const all = await getDB().drafts.toArray()
+  const { active, staleIds } = pickActiveDraft(all, todayKey())
+  if (staleIds.length) await getDB().drafts.bulkDelete(staleIds)
+  return active
+}
+
+export async function clearDrafts(): Promise<void> {
+  await getDB().drafts.clear()
 }
 
 export function getDeviceId(): string {

@@ -28,8 +28,10 @@ interface ResponseRow {
   fatherName: string
   mrnNo: string
   language: string
+  status: string
   submittedAt: Date
   syncedAt: Date | null
+  deceased: boolean
 }
 
 interface Filters {
@@ -172,6 +174,7 @@ export default function ResponsesClient({
                 <th className="text-left px-4 py-3 font-medium text-gray-600">Father Name</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-600">MRN</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-600">Language</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-600">Status</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-600">Submitted</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-600">Synced</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-600">Actions</th>
@@ -187,6 +190,20 @@ export default function ResponsesClient({
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${r.language === 'ur' ? 'bg-purple-100 text-purple-700' : r.language === 'roman-ur' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}`}>
                       {r.language === 'ur' ? 'Urdu' : r.language === 'roman-ur' ? 'Roman Urdu' : 'English'}
                     </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-wrap items-center gap-1">
+                      {r.status === 'incomplete' ? (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Incomplete</span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Complete</span>
+                      )}
+                      {r.deceased && (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-700" title="Family reported the child passed away during this stay">
+                          Deceased
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-3 text-gray-500">{new Date(r.submittedAt).toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-gray-500">{r.syncedAt ? new Date(r.syncedAt).toLocaleDateString() : '–'}</td>
