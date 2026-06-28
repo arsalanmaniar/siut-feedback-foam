@@ -74,9 +74,9 @@
   "q39": "Did a provider explain clearly what symptoms/health problems to look out for after leaving?",
   "q40": "Did you get information in writing about what symptoms/health problems to look out for after leaving?",
   "q41": "During this hospital stay, was your child 13 years old or older?",
-  "q42": "How often did providers involve your child in discussions about his/her health care?",
-  "q43": "Before leaving, did a provider ask your child if he/she had concerns about being ready to leave?",
-  "q44": "Before leaving, did a provider talk with your child about how to take care of his/her health after leaving?",
+  "q42": "During this hospital stay, how often did providers involve your child in discussions about his or her health care?",
+  "q43": "Before your child left the hospital, did a provider ask your child if he or she had any concerns about whether he or she was ready to leave?",
+  "q44": "Before your child left the hospital, did a provider talk with your child about how to take care of his or her health after leaving the hospital?",
   "section_overall_rating": "Overall Rating of This Hospital",
 
   "q45": "Using any number from 0 to 10, where 0 is the worst hospital possible and 10 is the best hospital possible, what number would you use to rate this hospital during your child's stay?",
